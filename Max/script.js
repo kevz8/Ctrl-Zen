@@ -25,6 +25,7 @@ function startCapturingFrames() {
     captureInterval = setInterval(analyzeFrame, 2);
 }
 
+
 async function analyzeFrame() {
     try {
         const video = document.getElementById('video');
