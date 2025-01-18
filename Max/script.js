@@ -46,8 +46,15 @@ async function analyzeFrame() {
         });
 
         const result = await response.json();
-        const emotion = result.emotion;
-        document.querySelector('.report p').textContent = emotion;
+        const emotion = result.data;
+        const status = result.status;
+        const message = result.message;
+        if(status == 0) {
+            console.log(message);
+        } else {
+            document.querySelector('.report p').textContent = emotion;
+        }
+        
     } catch (error) {
         console.error('Error:', error);
         document.querySelector('.report p').textContent = 'Error fetching data';
