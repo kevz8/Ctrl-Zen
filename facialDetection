@@ -18,7 +18,7 @@ LEFT_EYE_INDICES = list(range(36, 42))
 RIGHT_EYE_INDICES = list(range(42, 48))
 
 # Classification
-FOCUS_BUFFER_SIZE = 4
+FOCUS_BUFFER_SIZE = 10
 focus_buffer = deque(maxlen=FOCUS_BUFFER_SIZE)
 
 # init

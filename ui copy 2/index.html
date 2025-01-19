@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Facial Expression Video</title>
+    <!-- If you still want to use the external CSS files, uncomment these lines:
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wireframe">
+      <div class="div">
+        <!-- LOGO / HEADER -->
+        <div class="group">
+          <div class="overlap-group">
+            <div class="my">ctrl</div>
+            <div class="text-wrapper">zen</div>
+          </div>
+        </div>
+        <!-- USERNAME -->
+        <div class="my-2">username</div>
+
+        <!-- RIGHT-SIDE BOX: "productivity status" -->
+        <div class="overlap">
+          <div class="rectangle"></div>
+          <div class="my-3">productivity status</div>
+          <!-- We’ll put the final analysis result below it -->
+          <div id="report" class="report">
+            <p>Waiting for session...</p>
+          </div>
+        </div>
+
+        <!-- LEFT-SIDE BIG BOX -->
+        <div class="overlap-2">
+          <!-- Blue box = "Start Session" (turned into an actual button) -->
+          <div class="row-wrapper">
+            <div class="row">
+              <!-- START BUTTON -->
+              <button id="startButton" class="session-button">
+                <div class="my-4">start</div>
+                <div class="text-wrapper-2">session</div>
+              </button>
+              <!-- END BUTTON -->
+              <button id="stopButton" class="session-button end-button">
+                <div class="my-4">end</div>
+                <div class="text-wrapper-2">session</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- The circular timer or display -->
+          <div class="overlap-3">
+            <div class="ellipse"></div>
+            <div class="my-5">0:00</div>
+          </div>
+
+          <!-- Hidden video element for webcam frames -->
+          <video
+            id="video"
+            width="640"
+            height="480"
+            autoplay
+            
+          ></video>
+        </div>
+
+        <!-- "Generate Report" button -->
+        <div class="overlap-4">
+          <button class="button">
+            <div class="resume">Generate Report</div>
+            <div class="download"></div>
+          </button>
+          <img
+            class="img"
+            src="https://c.animaapp.com/af3e5lCW/img/download.svg"
+            alt="Download Icon"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

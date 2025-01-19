@@ -1,0 +1,266 @@
+.wireframe {
+  background-color: #fef0e4;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.wireframe .div {
+  background-color: #fef0e4;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.wireframe .group {
+  position: absolute;
+  width: 356px;
+  height: 103px;
+  top: 35px;
+  left: 80px;
+}
+
+.wireframe .overlap-group {
+  position: relative;
+  width: 352px;
+  height: 103px;
+  background-image: url(https://c.animaapp.com/af3e5lCW/img/img-1867-1@2x.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.wireframe .my {
+  position: absolute;
+  width: 112px;
+  height: 80px;
+  top: 7px;
+  left: 7px;
+  font-family: "Roboto Mono", Helvetica;
+  font-weight: 700;
+  color: #343434;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: -0.80px;
+  line-height: 56px;
+}
+
+.wireframe .text-wrapper {
+  position: absolute;
+  width: 114px;
+  height: 80px;
+  top: 7px;
+  left: 220px;
+  font-weight: 700;
+  color: #343434;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: -0.80px;
+  font-family: "Roboto Mono", Helvetica;
+  line-height: 56px;
+}
+
+.wireframe .my-2 {
+  position: absolute;
+  top: 53px;
+  left: 1217px;
+  font-weight: 400;
+  color: var(--primaryblack);
+  font-size: 36px;
+  letter-spacing: -0.72px;
+  white-space: nowrap;
+  font-family: "Roboto Mono", Helvetica;
+  line-height: 56px;
+}
+
+.wireframe .overlap {
+  position: absolute;
+  width: 379px;
+  height: 824px;
+  top: 161px;
+  left: 1006px;
+  background-color: #0f152f;
+  border-radius: 30px;
+  border: 3px solid;
+  border-color: #3a2f21;
+}
+
+.wireframe .rectangle {
+  position: absolute;
+  width: 379px;
+  height: 100px;
+  top: -3px;
+  left: -3px;
+  background-color: #fed300;
+  border-radius: 30px;
+  border: 3px solid;
+  border-color: #3a2f21;
+}
+
+.wireframe .my-3 {
+  position: absolute;
+  width: 379px;
+  height: 73px;
+  top: 8px;
+  left: -3px;
+  font-weight: 400;
+  color: #343434;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: -0.60px;
+  font-family: "Roboto Mono", Helvetica;
+  line-height: 56px;
+}
+
+.wireframe .overlap-2 {
+  position: absolute;
+  width: 869px;
+  height: 824px;
+  top: 161px;
+  left: 80px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  border: 3px solid;
+  border-color: #3a2f21;
+}
+
+.wireframe .row-wrapper {
+  position: absolute;
+  width: 283px;
+  height: 90px;
+  top: 713px;
+  left: 554px;
+  background-color: #3a10e4;
+  border-radius: 30px;
+  border: 3px solid;
+  border-color: #000000;
+}
+
+.wireframe .row {
+  display: flex;
+  width: 254px;
+  height: 76px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0px;
+  position: relative;
+  top: 4px;
+  left: 11px;
+}
+
+.wireframe .my-4 {
+  position: relative;
+  width: fit-content;
+  margin-top: -11.00px;
+  margin-bottom: -9.00px;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 32px;
+  letter-spacing: -0.64px;
+  white-space: nowrap;
+  font-family: "Roboto Mono", Helvetica;
+  line-height: 56px;
+}
+
+.wireframe .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -11.00px;
+  margin-bottom: -9.00px;
+  font-family: "Roboto Mono", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 32px;
+  letter-spacing: -0.64px;
+  line-height: 56px;
+  white-space: nowrap;
+}
+
+.wireframe .overlap-3 {
+  position: absolute;
+  width: 180px;
+  height: 181px;
+  top: 22px;
+  left: 657px;
+}
+
+.wireframe .ellipse {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 1px;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 90px;
+  border: 3px solid;
+  border-color: #000000;
+}
+
+.wireframe .my-5 {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 0;
+  left: 0;
+  font-weight: 400;
+  color: var(--primaryblack);
+  font-size: 48px;
+  text-align: center;
+  letter-spacing: -0.96px;
+  font-family: "Roboto Mono", Helvetica;
+  line-height: 56px;
+}
+
+.wireframe .overlap-4 {
+  position: absolute;
+  width: 438px;
+  height: 56px;
+  top: 54px;
+  left: 511px;
+  border-radius: 36px;
+}
+
+.wireframe .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 438px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0f152f;
+  border-radius: 36px;
+}
+
+.wireframe .resume {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Roboto Mono", Helvetica;
+  font-weight: 400;
+  color: var(--primarywhite);
+  font-size: 36px;
+  letter-spacing: 0.72px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.wireframe .download {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.wireframe .img {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  top: 11px;
+  left: 384px;
+}

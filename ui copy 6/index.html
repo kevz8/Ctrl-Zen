@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Facial Expression Video</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wireframe">
+      <div class="div">
+        <!-- Logo/Header (top-left) -->
+        <div class="group">
+          <div class="overlap-group">
+            <div class="my">ctrl</div>
+            <div class="text-wrapper">zen</div>
+          </div>
+        </div>
+
+        <!-- "Generate Report" button linking to user_report/index.html -->
+        <div class="overlap-4">
+          <button
+            class="button"
+            onclick="window.location.href='user_report/index.html'"
+          >
+            <div class="resume">Generate Report</div>
+            <div class="download"></div>
+          </button>
+          <img
+            class="img"
+            src="https://c.animaapp.com/af3e5lCW/img/download.svg"
+            alt="Download Icon"
+          />
+        </div>
+
+        <!-- Username near the "Generate Report" button -->
+        <div class="my-2">username</div>
+
+        <!-- The camera box (left) -->
+        <div class="camera-box">
+          <video
+            id="video"
+            class="video-element"
+            autoplay
+          ></video>
+          <div class="session-buttons">
+            <button id="startButton" class="session-button">
+              <div class="my-4">start</div>
+              <div class="text-wrapper-2">session</div>
+            </button>
+            <button id="stopButton" class="session-button end-button">
+              <div class="my-4">end</div>
+              <div class="text-wrapper-2">session</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Larger blue box for productivity status & output boxes -->
+        <div class="prod-status-box">
+          <div class="rectangle">
+            <div class="status-title">productivity status</div>
+          </div>
+          <!-- Single (live) result -->
+          <div id="report" class="report">
+            <p>Waiting for session...</p>
+          </div>
+          <!-- Event Log -->
+          <div class="eventlog-box">
+            <div class="log-title">Event Log</div>
+            <div id="eventlog" class="log-container"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

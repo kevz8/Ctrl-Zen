@@ -1,35 +1,46 @@
 let stream;
 let captureInterval;
+let eventLog = [];
 
-document.getElementById('startButton').addEventListener('click', async () => {
+document.getElementById('startButton').addEventListener('click', startSession);
+document.getElementById('stopButton').addEventListener('click', stopSession);
+
+async function startSession() {
   const video = document.getElementById('video');
   try {
+    eventLog = [];
+    document.getElementById('eventlog').innerHTML = '';
+    document.querySelector('#report p').textContent = 'Session started...';
+
     stream = await navigator.mediaDevices.getUserMedia({ video: true });
     video.srcObject = stream;
+
     startCapturingFrames();
   } catch (err) {
     console.error('Error accessing webcam:', err);
+    document.querySelector('#report p').textContent = 'Error accessing webcam';
   }
-});
+}
 
-document.getElementById('stopButton').addEventListener('click', () => {
+function stopSession() {
   if (stream) {
     const tracks = stream.getTracks();
     tracks.forEach(track => track.stop());
     document.getElementById('video').srcObject = null;
     clearInterval(captureInterval);
+
+    document.querySelector('#report p').textContent = 'Session ended.';
   }
-});
+}
 
 function startCapturingFrames() {
-  // Adjust interval as needed. If too fast, you may overload your server.
   captureInterval = setInterval(analyzeFrame, 100);
 }
 
 async function analyzeFrame() {
   try {
     const video = document.getElementById('video');
-    if (video.videoWidth === 0 || video.videoHeight === 0) return;
+    if (!video || video.videoWidth === 0 || video.videoHeight === 0) return;
 
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
@@ -47,19 +58,27 @@ async function analyzeFrame() {
       method: 'POST',
       body: formData
     });
-    
     const result = await response.json();
+
     if (result.status === 0) {
       console.error(result.message);
-      document.querySelector('.report p').textContent = result.message;
+      document.querySelector('#report p').textContent = result.message;
     } else {
-      // result.data contains { datetime, emotion, eye }
-      const { emotion, eye } = result.data;
-      document.querySelector('.report p').textContent =
+      const { datetime, emotion, eye } = result.data;
+
+      // Show single live result
+      document.querySelector('#report p').textContent =
         `Emotion: ${emotion} | Eye: ${eye}`;
+
+      // Log the event
+      eventLog.push({ datetime, emotion, eye });
+
+      const logLine = document.createElement('p');
+      logLine.textContent = `[${datetime}] Emotion: ${emotion}, Eye: ${eye}`;
+      document.getElementById('eventlog').appendChild(logLine);
     }
   } catch (error) {
     console.error('Error:', error);
-    document.querySelector('.report p').textContent = 'Error fetching data';
+    document.querySelector('#report p').textContent = 'Error fetching data';
   }
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Facial Expression Video</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wireframe">
+      <div class="div">
+        <!-- Logo/Header -->
+        <div class="group">
+          <div class="overlap-group">
+            <div class="my">ctrl</div>
+            <div class="text-wrapper">zen</div>
+          </div>
+        </div>
+
+        <!-- Username on top-right -->
+        <div class="my-2">username</div>
+
+        <!-- Camera Box (left) -->
+        <div class="camera-box">
+          <!-- Visible webcam video inside this box -->
+          <video
+            id="video"
+            class="video-element"
+            width="640"
+            height="480"
+            autoplay
+          ></video>
+
+          <!-- Timer circle at top-right corner -->
+          <div class="timer-circle">
+            <div class="ellipse"></div>
+            <div class="timer-text">0:00</div>
+          </div>
+
+          <!-- Start/End buttons at bottom-right corner -->
+          <div class="session-buttons">
+            <button id="startButton" class="session-button">
+              <div class="my-4">start</div>
+              <div class="text-wrapper-2">session</div>
+            </button>
+            <button id="stopButton" class="session-button end-button">
+              <div class="my-4">end</div>
+              <div class="text-wrapper-2">session</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Productivity Status Box (right) -->
+        <div class="prod-status-box">
+          <div class="rectangle"></div>
+          <div class="my-3">productivity status</div>
+
+          <!-- Live single result (overwrites on each new detection) -->
+          <div id="report" class="report">
+            <p>Waiting for session...</p>
+          </div>
+
+          <!-- Event Log (accumulates all results until stop) -->
+          <div class="eventlog-box">
+            <div class="log-title">Event Log</div>
+            <div id="eventlog" class="log-container"></div>
+          </div>
+        </div>
+
+        <!-- "Generate Report" button (optional) -->
+        <div class="overlap-4">
+          <button class="button">
+            <div class="resume">Generate Report</div>
+            <div class="download"></div>
+          </button>
+          <img
+            class="img"
+            src="https://c.animaapp.com/af3e5lCW/img/download.svg"
+            alt="Download Icon"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
