@@ -16,15 +16,18 @@ document.getElementById('signInButton').addEventListener('click', async function
             body: JSON.stringify(data)
         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
 
         const result = await response.json();
-        console.log('Success:', result);
-        // Handle success (e.g., redirect to another page)
+        if(result.status === 0) {
+            console.log(result.message);
+            throw new Error(result.message);
+        }
+
+        console.log('Login successful');
+        // jump to the next page.
+
     } catch (error) {
-        console.error('Error:', error);
-        // Handle error (e.g., show error message to the user)
+        console.error('Some unexpected error');
+
     }
 });
