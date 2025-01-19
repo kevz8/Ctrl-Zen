@@ -1,0 +1,178 @@
+import cv2
+from deepface import DeepFace
+import json
+from datetime import datetime
+import dlib
+import numpy as np
+from collections import deque
+
+PREDICTOR_PATH = "shape_predictor_68_face_landmarks.dat"
+PREDICTOR_PATH_2 = "haarcascade_frontalface_default.xml"
+
+# Initialize dlib's face detector (HOG-based) and the landmark predictor
+detector = dlib.get_frontal_face_detector()
+predictor = dlib.shape_predictor(PREDICTOR_PATH)
+
+# Indices for left/right eyes
+LEFT_EYE_INDICES = list(range(36, 42))
+RIGHT_EYE_INDICES = list(range(42, 48))
+
+# Classification
+FOCUS_BUFFER_SIZE = 4
+focus_buffer = deque(maxlen=FOCUS_BUFFER_SIZE)
+
+# init
+def getEmotion(img):
+    image = img
+
+    # Convert image to grayscale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Convert grayscale image to RGB format
+    rgb_image = cv2.cvtColor(gray_image, cv2.COLOR_GRAY2RGB)
+
+    # Detect faces
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + PREDICTOR_PATH_2)
+    faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+    # If no faces
+    if len(faces) == 0:
+        print("No faces detected.")
+        data = []
+        return data
+
+    # Sort faces by size (largest to smallest)
+    faces = sorted(faces, key=lambda x: x[2] * x[3], reverse=True)
+
+    # Extract the largest face
+    x, y, w, h = faces[0]
+    face_roi = rgb_image[y:y + h, x:x + w]
+
+    # Perform analysis
+    result = DeepFace.analyze(face_roi, actions=['emotion'], enforce_detection=True)
+
+    emotion = result[0]["dominant_emotion"]
+    return emotion
+
+def get_eye_landmarks(landmarks):
+    # Extracts the (x, y) coordinates for the left and right eyes
+
+    left_eye_pts = []
+    right_eye_pts = []
+    for i in LEFT_EYE_INDICES:
+        left_eye_pts.append((landmarks.part(i).x, landmarks.part(i).y))
+    for i in RIGHT_EYE_INDICES:
+        right_eye_pts.append((landmarks.part(i).x, landmarks.part(i).y))
+
+    return (np.array(left_eye_pts, dtype=np.int32),
+            np.array(right_eye_pts, dtype=np.int32))
+
+def find_pupil_center(thresh):
+    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if contours:
+        max_contour = max(contours, key=cv2.contourArea)
+        M = cv2.moments(max_contour)
+        if M["m00"] != 0:
+            cx = int(M["m10"] / M["m00"])
+            cy = int(M["m01"] / M["m00"])
+            return (cx, cy)
+    return None
+
+def is_looking_forward(frame, left_eye_pts, right_eye_pts):
+    # Determines if the person is looking forward (towards the camera)
+
+    # Eye bounding rectangles
+    x_left, y_left, w_left, h_left = cv2.boundingRect(left_eye_pts)
+    x_right, y_right, w_right, h_right = cv2.boundingRect(right_eye_pts)
+
+    # Extract regions
+    left_eye_roi = frame[y_left:y_left + h_left, x_left:x_left + w_left]
+    right_eye_roi = frame[y_right:y_right + h_right, x_right:x_right + w_right]
+
+    # Convert to grayscale and blur
+    left_gray = cv2.cvtColor(left_eye_roi, cv2.COLOR_BGR2GRAY)
+    right_gray = cv2.cvtColor(right_eye_roi, cv2.COLOR_BGR2GRAY)
+    left_gray = cv2.GaussianBlur(left_gray, (5, 5), 0)
+    right_gray = cv2.GaussianBlur(right_gray, (5, 5), 0)
+
+    # Otsu's threshold
+    _, left_thresh = cv2.threshold(left_gray, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    _, right_thresh = cv2.threshold(right_gray, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
+    left_thresh = cv2.morphologyEx(left_thresh, cv2.MORPH_OPEN, kernel)
+    right_thresh = cv2.morphologyEx(right_thresh, cv2.MORPH_OPEN, kernel)
+
+    # Find largest pupil in image
+    left_center = find_pupil_center(left_thresh)
+    right_center = find_pupil_center(right_thresh)
+
+    # If no pupil detected in either eye, return False
+    if left_center is None or right_center is None:
+        return False
+
+    # Compute ratio of pupil center within bounding box
+    def compute_eye_center_ratio(center, eye_w, eye_h):
+        cx, cy = center
+        ratio_x = cx / float(eye_w)
+        ratio_y = cy / float(eye_h)
+        return ratio_x, ratio_y
+
+    left_ratio = compute_eye_center_ratio(left_center, w_left, h_left)
+    right_ratio = compute_eye_center_ratio(right_center, w_right, h_right)
+
+    # Check if the ratio is "centered"
+    def in_center(ratio):
+        rx, ry = ratio
+        return 0.3 < rx < 0.7 and 0.3 < ry < 0.7
+
+    return in_center(left_ratio) and in_center(right_ratio)
+
+def main(image_path):
+    # Read the image
+    frame = cv2.imread(image_path)
+    if frame is None:
+        print(f"Could not read the image at path: {image_path}")
+        return
+    
+    result1 = getEmotion(frame)
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    # Convert to grayscale for face detection
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # Detect faces
+    faces = detector(gray)
+
+    if faces:
+        # Largest face by area
+        largest_face = max(faces, key=lambda rect: rect.width() * rect.height())
+
+        # Get landmarks
+        landmarks = predictor(gray, largest_face)
+        left_eye_pts, right_eye_pts = get_eye_landmarks(landmarks)
+
+        # Check if person is looking forward
+        focused_now = is_looking_forward(frame, left_eye_pts, right_eye_pts)
+        focus_buffer.append(focused_now)
+
+        # Analyze eye focus
+        if sum(focus_buffer) > (len(focus_buffer) // 2):
+            result2 = "Focused on Screen"
+        else:
+            result2 = "Not Focused"
+    else:
+        result2 = "No faces detected."
+
+    # Initialize data list
+    data = [{
+        "datetime": current_time,
+        "emotion": result1,
+        "eye": result2
+    }]
+    return data
+
+if __name__ == "__main__":
+    image_path = "test3.jpg"
+    result = main(image_path)
+    print(result)
