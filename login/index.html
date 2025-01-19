@@ -1,69 +1,90 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="wireframe">
-      <div class="div">
-        <div class="group">
-          <div class="overlap-group">
-            <img src="img/IMG_1867 1.png">
-            <div class="my">ctrl </div>
-            <div class="text-wrapper">zen</div>
-          </div>
-        </div>
-        <div class="login-form">
-          <div class="intro">
-            <p class="welcome-back"><span class="span">Welcome Back </span> <span class="text-wrapper-2"> 👋</span></p>
-            <div class="text-wrapper-3">Where mindful coding begins.</div>
-          </div>
-          <div class="form">
-            <div class="input">
-              <input class="label" placeholder="Email" type="email" />
-              <div class="overlap-group-wrapper">
-                <div class="placeholder-wrapper">
-                  <input class="placeholder" placeholder="Example@email.com" type="email" />
-                </div>
-              </div>
-            </div>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="globals.css" />
+  <link rel="stylesheet" href="styleguide.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Sign In Page</title>
+</head>
+<body>
+<div class="wireframe">
+  <div class="div">
+    <div class="group">
+      <div class="overlap-group">
+        <img src="img/IMG_1867 1.png" />
+        <div class="my">ctrl</div>
+        <div class="text-wrapper">zen</div>
+      </div>
+    </div>
 
-            <div class="input-2">
-              <div class="overlap-group-wrapper">
-                <div class="placeholder-wrapper">
-                  <input class="placeholder" placeholder="at least 8 characters" type="password" />
-                </div>
-              </div>
+    <div class="login-form">
+      <div class="intro">
+        <p class="welcome-back">
+          <span class="span">Welcome Back </span>
+          <span class="text-wrapper-2">👋</span>
+        </p>
+        <div class="text-wrapper-3">Where mindful coding begins.</div>
+      </div>
+
+      <!-- Form -->
+      <div class="form">
+        <!-- Email Inputs -->
+        <div class="input">
+          <input class="label" placeholder="Email" type="email" />
+          <div class="overlap-group-wrapper">
+            <div class="placeholder-wrapper">
+              <input class="placeholder-2" placeholder="Example@email.com" type="email" />
             </div>
-            <div class="text-wrapper-4">Forgot Password?</div>
-            <button class="main-button" id="signInButton"><div class="text-wrapper-5">Sign in</div></button>
           </div>
-          <p class="don-t-you-have-an">
-            <span class="text-wrapper-6">Don&#39;t you have an account? </span>
-            <button class="text-wrapper-7">Sign up</button>
-          </p>
         </div>
-        <div class="social-sign-in">
-          <div class="or">
-            <img class="line" src="img/line-2.svg" />
-            <div class="text-wrapper-8">Or</div>
-            <img class="line" src="img/line-1.svg" />
-          </div>
-          <div class="social-buttons">
-            <div class="social-button">
-              <img class="img" src="img/google.svg" />
-              <div class="sign-in-with">Sign in with Google</div>
-            </div>
-            <div class="social-button">
-              <img class="img" src="img/Octicons-mark-github.svg" />
-              <div class="sign-in-with">Sign in with Github</div>
+
+        <!-- Password Input -->
+        <div class="input-2">
+          <div class="overlap-group-wrapper">
+            <div class="placeholder-wrapper">
+              <input class="placeholder" placeholder="at least 8 characters" type="password" />
             </div>
           </div>
+        </div>
+
+        <div class="text-wrapper-4">Forgot Password?</div>
+
+        <!-- Sign In Button -->
+        <button class="main-button" id="signInButton">
+          <div class="text-wrapper-5">Sign in</div>
+        </button>
+      </div>
+
+      <p class="don-t-you-have-an">
+        <span class="text-wrapper-6">Don&#39;t you have an account? </span>
+        <!-- This button has no functionality -->
+        <button class="text-wrapper-7">Sign up</button>
+      </p>
+    </div>
+
+    <!-- Social Sign-In (no functionality) -->
+    <div class="social-sign-in">
+      <div class="or">
+        <img class="line" src="img/line-2.svg" />
+        <div class="text-wrapper-8">Or</div>
+        <img class="line" src="img/line-1.svg" />
+      </div>
+      <div class="social-buttons">
+        <div class="social-button">
+          <img class="img" src="img/google.svg" />
+          <div class="sign-in-with">Sign in with Google</div>
+        </div>
+        <div class="social-button">
+          <img class="img" src="img/Octicons-mark-github.svg" />
+          <div class="sign-in-with">Sign in with Github</div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+
+<!-- IMPORTANT: script.js must be loaded after the HTML elements -->
+<script src="script.js"></script>
+</body>
 </html>
