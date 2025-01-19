@@ -1,0 +1,268 @@
+.wireframe {
+    background-color: #0f152f;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .wireframe .div {
+    background-color: #0f152f;
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+  }
+  
+  .wireframe .overlap {
+    position: absolute;
+    width: 422px;
+    height: 200px;
+    top: 412px;
+    left: 118px;
+  }
+  
+  .wireframe .user {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .wireframe .table-header-header {
+    display: flex;
+    width: 360px;
+    height: 40px;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 10px;
+    position: relative;
+    background-color: #ffffff33;
+    border-radius: 5px 5px 0px 0px;
+  }
+  
+  .wireframe .table-name {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    margin-top: -1.00px;
+    font-family: "Work Sans", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 0.16px;
+    line-height: 20.8px;
+  }
+  
+  .wireframe .div-2 {
+    position: relative;
+    width: 360px;
+    height: 40px;
+  }
+  
+  .wireframe .table-number-base {
+    height: 40px;
+  }
+  
+  .wireframe .field {
+    display: flex;
+    width: 360px;
+    height: 40px;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 7px 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff05;
+  }
+  
+  .wireframe .name {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    font-family: "IBM Plex Mono", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 18.2px;
+  }
+  
+  .wireframe .type {
+    position: relative;
+    width: 182px;
+    height: 19px;
+    font-family: "IBM Plex Mono", Helvetica;
+    font-weight: 400;
+    color: #f17400;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 18.2px;
+    white-space: nowrap;
+  }
+  
+  .wireframe .border {
+    position: absolute;
+    width: 360px;
+    height: 40px;
+    top: 0;
+    left: 0;
+  }
+  
+  .wireframe .bottom-line {
+    position: absolute;
+    width: 360px;
+    height: 1px;
+    top: 40px;
+    left: 0;
+    object-fit: cover;
+  }
+  
+  .wireframe .left-line {
+    position: absolute;
+    width: 1px;
+    height: 39px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+  
+  .wireframe .right-line {
+    position: absolute;
+    width: 1px;
+    height: 39px;
+    top: 0;
+    left: 359px;
+    object-fit: cover;
+  }
+  
+  .wireframe .overlap-group-wrapper {
+    width: 360px;
+    height: 40px;
+  }
+  
+  .wireframe .overlap-group {
+    position: relative;
+    height: 40px;
+  }
+  
+  .wireframe .text-wrapper {
+    color: #00d0ab;
+    position: relative;
+    align-self: stretch;
+    width: 105px;
+    font-family: "IBM Plex Mono", Helvetica;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 18.2px;
+  }
+  
+  .wireframe .type-2 {
+    color: #efc900;
+    position: relative;
+    align-self: stretch;
+    width: 105px;
+    font-family: "IBM Plex Mono", Helvetica;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 18.2px;
+  }
+  
+  .wireframe .relation-line {
+    position: absolute;
+    width: 63px;
+    height: 12px;
+    top: 112px;
+    left: 359px;
+  }
+  
+  .wireframe .user-2 {
+    top: 411px;
+    left: 540px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+  }
+  
+  .wireframe .overlap-2 {
+    position: absolute;
+    width: 422px;
+    height: 200px;
+    top: 411px;
+    left: 900px;
+  }
+  
+  .wireframe .user-3 {
+    top: 0;
+    left: 62px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+  }
+  
+  .wireframe .img {
+    position: absolute;
+    width: 63px;
+    height: 12px;
+    top: 113px;
+    left: 0;
+  }
+  
+  .wireframe .rectangle {
+    position: fixed;
+    width: 165px;
+    height: 109px;
+    top: 902px;
+    left: 1230px;
+    background-color: #efc900;
+    border-radius: 30px;
+    border: 3px solid;
+    border-color: #000000;
+  }
+  
+  .wireframe .row {
+    display: flex;
+    width: 254px;
+    height: 76px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 0px;
+    position: fixed;
+    top: 919px;
+    left: 1185px;
+  }
+  
+  .wireframe .my {
+    position: relative;
+    width: fit-content;
+    margin-top: -11.00px;
+    margin-bottom: -9.00px;
+    font-family: "Roboto Mono", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: -0.64px;
+    line-height: 56px;
+    white-space: nowrap;
+  }
+  
+  .wireframe .my-2 {
+    position: fixed;
+    top: 255px;
+    left: 118px;
+    font-family: "Roboto Mono", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 96px;
+    letter-spacing: -1.92px;
+    line-height: 56px;
+    white-space: nowrap;
+  }
+  
