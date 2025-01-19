@@ -8,7 +8,8 @@ document.getElementById('signInButton').addEventListener('click', async function
     if(email === "nwhack" && password === "12345678") {
         console.log("success");
         // window.open("ui copy 7/index.html", "_blank");
-        window.location.href = "http://localhost:63342/Ctrl-Zen/ui%20copy%207/index.html?_ijt=3me3j23mi8obsektrqlfr8ijji";
+        //window.location.href = "http://localhost:63342/Ctrl-Zen/ui%20copy%207/index.html?_ijt=3me3j23mi8obsektrqlfr8ijji";
+        window.location.href = "file:///Users/henilagrawal/Ctrl-Zen-1/frontend/index.html";
     } else {
         console.log("fail");
     }

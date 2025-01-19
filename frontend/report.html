@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Horizontally Scrollable Sessions</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        background-color: #0f152f;
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+      }
+      .page-title {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-size: 96px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 700;
+        color: #fff;
+        z-index: 999;
+      }
+      .return-button {
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        width: 140px;
+        height: 70px;
+        background-color: #efc900;
+        border-radius: 30px;
+        border: 3px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Roboto Mono", monospace;
+        font-size: 18px;
+        color: #000;
+        cursor: pointer;
+        z-index: 999;
+      }
+      .horizontal-scroll-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+      }
+      .session {
+        display: inline-block;
+        vertical-align: middle;
+        width: 400px; /* Increased width to accommodate more content */
+        margin: 0 30px;
+        border: 1px solid #ffffff33;
+        border-radius: 5px;
+        background-color: #ffffff05;
+        position: relative;
+      }
+      .session-header {
+        background-color: #ffffff33;
+        border-radius: 5px 5px 0 0;
+        padding: 10px;
+        font-family: "Work Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .session-field {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px; /* Reduced gap to prevent overflow */
+        background-color: #ffffff05;
+        padding: 8px 10px;
+        border-bottom: 1px solid #ffffff33;
+        font-family: "IBM Plex Mono", monospace;
+        color: #fff;
+      }
+      .session-field:last-child {
+        border-bottom: none;
+      }
+      .value-orange {
+        color: #f17400;
+      }
+      .value-green {
+        color: #00d0ab;
+      }
+      .value-yellow {
+        color: #efc900;
+      }
+      .session:not(:last-child)::after {
+        content: "";
+        display: block;
+        width: 59px;
+        height: 12px;
+        background: url('https://c.animaapp.com/UY4MljKb/img/relation---line-1.svg') no-repeat center;
+        position: absolute;
+        right: -60px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const sessionsData = [
+        {
+          id: 5,
+          dateStarted: "2025-01-25 17:26:34",
+          ended: "2025-01-25 19:42:45",
+          worked: 124,
+          focused: 108
+        },
+        {
+          id: 4,
+          dateStarted: "2025-01-24 12:51:46",
+          ended: "2025-01-24 14:46:01",
+          worked: 203,
+          focused: 189
+        },
+        {
+          id: 3,
+          dateStarted: "2025-01-22 17:46:06",
+          ended: "2025-01-22 18:42:01",
+          worked: 80,
+          focused: 59
+        },
+        {
+          id: 2,
+          dateStarted: "2025-01-20 15:62:01",
+          ended: "2025-01-20 16:44:51",
+          worked: 220,
+          focused: 183
+        },
+        {
+          id: 1,
+          dateStarted: "2025-01-19 13:42:01",
+          ended: "2025-01-19 15:05:56",
+          worked: 145,
+          focused: 104
+        }
+      ];
+
+      function Session({ session }) {
+        return (
+          <div className="session">
+            <div className="session-header">Session #{session.id}</div>
+            <div className="session-field">
+              <div>date started</div>
+              <div className="value-orange">{session.dateStarted}</div>
+            </div>
+            <div className="session-field">
+              <div>date ended</div>
+              <div className="value-orange">{session.ended}</div>
+            </div>
+            <div className="session-field">
+              <div>minutes worked</div>
+              <div className="value-green">{session.worked}</div>
+            </div>
+            <div className="session-field">
+              <div>minutes focused</div>
+              <div className="value-yellow">{session.focused}</div>
+            </div>
+          </div>
+        );
+      }
+
+      function App() {
+        const handleReturn = () => {
+          window.location.href = 'index.html'; // Navigate to placeholder page
+        };
+
+        return (
+          <>
+            <div className="page-title">USER REPORT</div>
+            <div className="return-button" onClick={handleReturn}>
+              Return
+            </div>
+            <div className="horizontal-scroll-container">
+              {sessionsData.map(s => (
+                <Session key={s.id} session={s} />
+              ))}
+            </div>
+          </>
+        );
+      }
+
+      const rootElement = document.getElementById("root");
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
